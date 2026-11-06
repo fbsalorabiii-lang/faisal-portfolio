@@ -1,13 +1,9 @@
-# Faisal Saud Alorabi — Portfolio
+# Faisal Saud Alorabi · Engineering Portfolio
 
-Static portfolio website for GitHub Pages.
+Static GitHub Pages portfolio. Open `index.html` for a local preview.
 
-## Files
-- `index.html` — page content
-- `style.css` — responsive design
-- `script.js` — mobile navigation and subtle reveal effects
-- `assets/` — project preview images
-- `files/` — CV, project reports/presentation, research paper, and certificate
-
-## Deploy on GitHub Pages
-Replace the old repository contents with this folder's contents, commit, and push to `main`. GitHub Pages will update automatically if it is already configured to deploy from the repository.
+- `index.html` includes the project index, case studies, skills and document links.
+- `style.css` defines the responsive layout, illustrations and motion.
+- `script.js` enhances the case-study tabs. The project content and PDF links work without JavaScript.
+- `assets/` contains the personal monogram and project imagery.
+- `files/` contains the CV, publication, reports, presentation and certificate. Keep these relative paths when publishing.
