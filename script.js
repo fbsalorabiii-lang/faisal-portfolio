@@ -224,6 +224,10 @@ function syncMotion() {
   } else {
     heroExhibit.style.removeProperty('--mx');
     heroExhibit.style.removeProperty('--my');
+    for (const diagram of document.querySelectorAll('.skill-diagram')) {
+      diagram.style.removeProperty('--skill-x');
+      diagram.style.removeProperty('--skill-y');
+    }
     for (const exhibit of document.querySelectorAll('.project-showcase')) {
       exhibit.style.removeProperty('--pitch');
       exhibit.style.removeProperty('--yaw');
@@ -330,3 +334,21 @@ imageViewer.addEventListener('close', () => {
   document.body.classList.remove('viewer-open');
   if (imageTrigger) imageTrigger.focus({preventScroll:true});
 });
+
+const skillDiagrams = document.querySelectorAll('.skill-diagram');
+const skillObserver = new IntersectionObserver(entries => {
+  for (const entry of entries) entry.target.classList.toggle('is-inview', entry.isIntersecting);
+}, {threshold: .35});
+for (const diagram of skillDiagrams) {
+  skillObserver.observe(diagram);
+  diagram.addEventListener('pointermove', event => {
+    if (motionPaused || motionPreference.matches || !precisePointer.matches) return;
+    const bounds = diagram.getBoundingClientRect();
+    diagram.style.setProperty('--skill-x', ((.5 - (event.clientY - bounds.top) / bounds.height) * 7) + 'deg');
+    diagram.style.setProperty('--skill-y', (((event.clientX - bounds.left) / bounds.width - .5) * 5) + 'deg');
+  });
+  diagram.addEventListener('pointerleave', () => {
+    diagram.style.removeProperty('--skill-x');
+    diagram.style.removeProperty('--skill-y');
+  });
+}
